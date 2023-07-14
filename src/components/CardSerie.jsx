@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const CardSerie = ({ serie }) => {
   const { posterImage, canonicalTitle, ageRating, averageRating } =
     serie.attributes;
+
   return (
     <li className="relative overflow-hidden rounded-md">
       <Link to={`/serie/${serie.id}`}>

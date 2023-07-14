@@ -1,27 +1,30 @@
-import { useEffect, useState } from "react";
+import { useFetch } from "../hooks/useFetch";
 
 const Categories = () => {
-  const [categories, setCategories] = useState(null);
+  const { data, loading, error } = useFetch(
+    "https://kitsu.io/api/edge/categories"
+  );
 
-  useEffect(() => {
-    fetch("https://kitsu.io/api/edge/categories")
-      .then((res) => res.json())
-      .then((json) => setCategories(json.data));
-    return () => {};
-  }, []);
+  if (!data) return null;
+
+  let categories = data.data;
+
+  console.log(categories);
 
   return (
     <div>
       <ul>
-        {categories?.map((category) => {
-          console.log(category);
-          const { title } = category.attributes;
-          return (
-            <li key={category.id}>
-              <h4>{title}</h4>
-            </li>
-          );
-        })}
+        {loading && <p>Loading... </p>}
+        {error && <p>{error}</p>}
+        {data &&
+          categories.map((category) => {
+            const { title } = category.attributes;
+            return (
+              <li key={category.id}>
+                <h4>{title}</h4>
+              </li>
+            );
+          })}
       </ul>
     </div>
   );
