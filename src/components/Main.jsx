@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "../pages/HomePage.jsx";
 import SeriePage from "../pages/SeriePage.jsx";
 import Categories from "./Categories.jsx";
+import EpisodesPage from "../pages/EpisodesPage.jsx";
 
 const Main = () => {
   return (
@@ -11,6 +12,7 @@ const Main = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/serie/:id" element={<SeriePage />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/episodes" element={<EpisodesPage />} />
         </Routes>
       </div>
     </main>

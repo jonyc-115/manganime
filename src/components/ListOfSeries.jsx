@@ -13,6 +13,7 @@ const ListOfSeries = () => {
   return (
     <ul className="grid grid-cols-fluid gap-3 place-items-center">
       {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
       {data &&
         series?.map((serie) => <CardSerie serie={serie} key={serie.id} />)}
     </ul>
