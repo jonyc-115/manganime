@@ -9,7 +9,7 @@ const Categories = () => {
 
   let categories = data.data;
 
-  console.log(categories);
+  //console.log(categories);
 
   return (
     <div>
