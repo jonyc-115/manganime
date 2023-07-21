@@ -7,6 +7,7 @@ const ListOfEpisodes = ({ id }) => {
   );
 
   if (!data) return null;
+  console.log(data.data);
 
   //console.log(data.data);
 
@@ -20,7 +21,7 @@ const ListOfEpisodes = ({ id }) => {
         return (
           <li key={episode.id}>
             <Link
-              to="/episodes"
+              to={`/episodes/${episode.id}`}
               className="flex items-center gap-4 border-[#00000048] border-b-2 border-t-2"
             >
               <div className=" h-20 w-20">
