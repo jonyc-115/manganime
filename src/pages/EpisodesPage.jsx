@@ -1,10 +1,10 @@
 import React from "react";
 import { useFetch } from "../hooks/useFetch";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const EpisodesPage = () => {
   const { id } = useParams();
-  console.log(id);
+  const navigate = useNavigate();
   const { data, loading, error } = useFetch(
     `https://kitsu.io/api/edge/episodes/${id}`
   );
@@ -12,14 +12,23 @@ const EpisodesPage = () => {
   if (!data) return null;
   console.log(data);
 
+  const { thumbnail, canonicalTitle, synopsis, airdate } = data.data.attributes;
+
   return (
     <section>
       <div>
+        <button onClick={() => navigate(-1)}>Volver</button>
         <div>
-          <img src="" alt="" />
+          <img src={thumbnail.original} alt="" />
+        </div>
+        <div>
+          <h3 className="flex justify-between mt-5 mb-1">
+            Synopsis <span>{airdate}</span>
+          </h3>
+          <p>{synopsis}</p>
         </div>
       </div>
-      <p>pagina episodio</p>
+      <div></div>
     </section>
   );
 };

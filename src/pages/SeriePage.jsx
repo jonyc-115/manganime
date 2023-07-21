@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { useState } from "react";
 import ListOfEpisodes from "../components/ListOfEpisodes";
@@ -7,6 +7,7 @@ const SeriePage = () => {
   const { id } = useParams();
   const [readMore, setReadMore] = useState(true);
   console.log(readMore);
+  const navigate = useNavigate();
 
   const { data, loading, error } = useFetch(
     `https://kitsu.io/api/edge/anime/${id}`
@@ -27,6 +28,7 @@ const SeriePage = () => {
     <section className="relative">
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
+      <button onClick={() => navigate(-1)}>Volver</button>
       <div className="relative bg-slate-500">
         <img src={posterImage.original} alt="" />
         <div className="absolute flex justify-center left-0 bottom-0 w-full ">
@@ -56,7 +58,7 @@ const SeriePage = () => {
       </div>
 
       <div>
-        <h2 className="my-3 text-xl font-semibold">Episodes</h2>
+        <h2 className="mt-4 mb-2 text-xl font-semibold">Episodes</h2>
         <ListOfEpisodes id={id} />
       </div>
     </section>
